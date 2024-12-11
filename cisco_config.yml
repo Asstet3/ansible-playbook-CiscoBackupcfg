@@ -8,10 +8,15 @@
     backup_dir: /tmp/backup/
 
   tasks:
-    - name: Get show ver
+    - name: Get show run
       ios_config:
         backup: yes
       register: backup_config
+
+    - name: "create {{ backup_dir }}"
+      file:
+        path: "{{ backup_dir }}"
+        state: directory
 
     - name: Store the config to directory
       copy:
