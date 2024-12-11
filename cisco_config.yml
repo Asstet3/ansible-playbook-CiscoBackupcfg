@@ -1,0 +1,19 @@
+---
+- name: Get info cisco
+  hosts: switches
+  gather_facts: false
+  become: true
+  
+  vars:
+    backup_dir: /tmp/backup/
+
+  tasks:
+    - name: Get show ver
+      ios_config:
+        backup: yes
+      register: backup_config
+
+    - name: Store the config to directory
+      copy:
+        src: "{{ backup_config.backup_path }}"
+        dest: "{{ backup_dir }}{{ inventory_hostname }}-{{ now(utc=true,fmt='%Y-%m-%d') }}"
