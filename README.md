@@ -2,5 +2,6 @@
 
 В функции get_privilege_level
 перед строкой  prompt = self.privilege_revel_re.search(result)
+
 "if result == 'Current privilege level is network-admin':
             result = 'Current privilege level is 15'"
